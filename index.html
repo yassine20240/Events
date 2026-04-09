@@ -728,37 +728,61 @@ buttons.forEach(btn => {
 </div>
       </div>
 
-      <div class="col-lg-8">
-        <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
-          <div class="row gy-4">
+      
 
-            <div class="col-md-6">
-              <input type="text" name="name" class="form-control" placeholder="Votre nom" required="">
-            </div>
+<div class="col-lg-8">
+  <form id="whatsappForm" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+    <div class="row gy-4">
 
-            <div class="col-md-6 ">
-              <input type="email" class="form-control" name="email" placeholder="Votre email" required="">
-            </div>
+      <div class="col-md-6">
+        <input type="text" id="name" name="name" class="form-control" placeholder="Votre nom" required>
+      </div>
 
-            <div class="col-md-12">
-              <input type="text" class="form-control" name="subject" placeholder="Sujet" required="">
-            </div>
+      <div class="col-md-6">
+        <input type="email" id="email" name="email" class="form-control" placeholder="Votre email" required>
+      </div>
 
-            <div class="col-md-12">
-              <textarea class="form-control" name="message" rows="6" placeholder="Votre message" required=""></textarea>
-            </div>
+      <div class="col-md-12">
+        <input type="text" id="subject" name="subject" class="form-control" placeholder="Sujet" required>
+      </div>
 
-            <div class="col-md-12 text-center">
-              <div class="loading">Chargement...</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Votre message a été envoyé avec succès. Merci !</div>
+      <div class="col-md-12">
+        <textarea id="message" class="form-control" name="message" rows="6" placeholder="Votre message" required></textarea>
+      </div>
 
-              <button type="submit">Envoyer un message</button>
-            </div>
+      <div class="col-md-12 text-center">
+        <button type="submit">Envoyer un message</button>
+      </div>
 
-          </div>
-        </form>
-      </div><!-- End Contact Form -->
+    </div>
+  </form>
+</div>
+
+<script>
+  document.getElementById("whatsappForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const subject = document.getElementById("subject").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    const phoneNumber = "212661639959"; // format international sans 0
+
+    const text =
+      "Bonjour,%0A%0A" +
+      "Nom: " + encodeURIComponent(name) + "%0A" +
+      "Email: " + encodeURIComponent(email) + "%0A" +
+      "Sujet: " + encodeURIComponent(subject) + "%0A" +
+      "Message: " + encodeURIComponent(message);
+
+    const whatsappURL = "https://wa.me/" + phoneNumber + "?text=" + text;
+
+    window.open(whatsappURL, "_blank");
+  });
+</script>
+
+
 
     </div>
 
